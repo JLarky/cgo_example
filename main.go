@@ -2,11 +2,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package cgo_example
+package main
 
-// #include "example.h"
-import "C"
+import (
+	"cgo_example"
+)
 
-func Hello() {
-     C.Hello();
+func main() {
+     cgo_example.Hello();
 }

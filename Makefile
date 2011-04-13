@@ -1,19 +1,21 @@
-#
-#
-#
+# Copyright 2010 The Go Authors.  All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
 
-include $(GOROOT)/src/Make.inc
+include ~/go/src/Make.inc
 
-TARG=github.com/JLarky/cgo_example
+TARG=cgo_example
 
-CGOFILES=cgo_example.go
-CGO_LDFLAGS=
-CLEANERFILES+=cgo_example
+CGOFILES=\
+	cgo_example.go\
 
-include $(GOROOT)/src/Make.pkg
+CGO_OFILES=\
+	example.o\
 
-all:
+CLEANFILES+=main
 
-%: install %.go
-	$(GC) -I$(GOROOT)/pkg/linux_386 $*.go
-	$(LD) -o $@ $*.$O
+include ~/go/src/Make.pkg
+
+main: install main.go
+	$(GC) main.go
+	$(LD) -o $@ main.$O

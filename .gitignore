@@ -3,3 +3,4 @@ _obj
 _cgo*
 *.[568vq]
 *.o
+main
