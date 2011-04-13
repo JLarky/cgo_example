@@ -4,15 +4,15 @@
 
 include $(GOROOT)/src/Make.inc
 
-TARG=main
+TARG=github.com/JLarky/cgo_example
 
-CGOFILES=c_go.go
+CGOFILES=cgo_example.go
 CGO_LDFLAGS=
-CLEANERFILES+=c_go
+CLEANERFILES+=cgo_example
 
 include $(GOROOT)/src/Make.pkg
 
-all: c_go
+all:
 
 %: install %.go
 	$(GC) -I$(GOROOT)/pkg/linux_386 $*.go
