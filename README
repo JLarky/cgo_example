@@ -1,0 +1,19 @@
+# FAIL
+
+$ make
+CGOPKGPATH= cgo --  c_go.go
+touch _obj/_cgo_run
+8g -o _go_.8  _obj/c_go.cgo1.go _obj/_cgo_gotypes.go
+8c -FVw -I/home/jlarky/go/pkg/linux_386 -I . -o "_cgo_defun.8" _obj/_cgo_defun.c
+gcc -m32 -I . -g -fPIC -O2 -o _cgo_main.o -c   _obj/_cgo_main.c
+gcc -m32 -I . -g -fPIC -O2 -o c_go.cgo2.o -c   _obj/c_go.cgo2.c
+gcc -m32 -I . -g -fPIC -O2 -o _cgo_export.o -c   _obj/_cgo_export.c
+gcc -m32 -g -fPIC -O2 -o _cgo1_.o _cgo_main.o c_go.cgo2.o _cgo_export.o  
+cgo -dynimport _cgo1_.o >_obj/_cgo_import.c_ && mv -f _obj/_cgo_import.c_ _obj/_cgo_import.c
+8c -FVw -I . -o "_cgo_import.8" _obj/_cgo_import.c
+rm -f _obj/main.a
+gopack grc _obj/main.a _go_.8  _cgo_defun.8 _cgo_import.8 c_go.cgo2.o _cgo_export.o
+cp _obj/main.a "/home/jlarky/go/pkg/linux_386/main.a"
+8g -I/home/jlarky/go/pkg/linux_386 c_go.go
+c_go.go:3: can't find import: C
+make: *** [c_go] Error 1
